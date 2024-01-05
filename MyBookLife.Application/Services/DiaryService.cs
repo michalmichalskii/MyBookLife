@@ -41,5 +41,10 @@ namespace MyBookLife.Application.Services
                                           .ToList();
             return diaries;
         }
+
+        public void RemoveDiaryById(int diaryId)
+        {
+            _diaryRepository.RemoveDiaryById(diaryId);
+        }
     }
 }

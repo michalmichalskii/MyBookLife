@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper.Configuration.Conventions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBookLife.Application.Interfaces;
 using MyBookLife.Application.ViewModels.DiaryVm;
@@ -39,6 +40,13 @@ namespace MyBookLife.Web.Controllers
         {
             newDiaryVm.Owner = User.Identity.Name;
             var id = _diaryService.AddDiary(newDiaryVm);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult RemoveDiaryById(int diaryId)
+        {
+            _diaryService.RemoveDiaryById(diaryId);
             return RedirectToAction("Index");
         }
     }

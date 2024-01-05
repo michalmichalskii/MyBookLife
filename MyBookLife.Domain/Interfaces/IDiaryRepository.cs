@@ -12,7 +12,7 @@ namespace MyBookLife.Domain.Interfaces
         IQueryable<Diary> GetAllDiaries();
         Diary GetDiary(int id);
         int AddDiary(Diary diary);
-        void DeleteDiary(int diaryId);
+        void RemoveDiaryById(int diaryId);
         void UpdateDiary(int diaryId);
 
     }

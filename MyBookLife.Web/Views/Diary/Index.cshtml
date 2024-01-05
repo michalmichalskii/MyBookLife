@@ -29,26 +29,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDateTime)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalPagesRead)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.TotalBooksRead)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDateTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPagesRead)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalBooksRead)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "RemoveDiaryById", new { diaryId = item.Id })
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

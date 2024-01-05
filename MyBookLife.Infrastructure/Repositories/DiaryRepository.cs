@@ -30,9 +30,14 @@ namespace MyBookLife.Infrastructure.Repositories
             return diary.Id;
         }
 
-        public void DeleteDiary(int diaryId)
+        public void RemoveDiaryById(int diaryId)
         {
-            throw new NotImplementedException();
+            var diary = _context.Diaries.Find(diaryId);
+            if (diary != null)
+            {
+                _context.Diaries.Remove(diary);
+                _context.SaveChanges() ;
+            }
         }
 
         public Diary GetDiary(int id)
