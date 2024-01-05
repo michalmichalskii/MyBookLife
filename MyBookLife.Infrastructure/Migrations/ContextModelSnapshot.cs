@@ -236,7 +236,7 @@ namespace MyBookLife.Infrastructure.Migrations
 
                     b.HasIndex("GenreId");
 
-                    b.ToTable("BookGenre");
+                    b.ToTable("BookGenre", (string)null);
                 });
 
             modelBuilder.Entity("MyBookLife.Domain.Models.Genre", b =>
@@ -253,7 +253,7 @@ namespace MyBookLife.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Genres");
+                    b.ToTable("Genres", (string)null);
                 });
 
             modelBuilder.Entity("MyBookLife.Domain.Models.NoteBased.Entry", b =>
@@ -271,7 +271,6 @@ namespace MyBookLife.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("TotalBooksRead")
@@ -284,7 +283,7 @@ namespace MyBookLife.Infrastructure.Migrations
 
                     b.HasIndex("DiaryId");
 
-                    b.ToTable("Entries");
+                    b.ToTable("Entries", (string)null);
                 });
 
             modelBuilder.Entity("MyBookLife.Domain.Models.NotesBased.Diary", b =>
@@ -299,7 +298,6 @@ namespace MyBookLife.Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
@@ -314,7 +312,7 @@ namespace MyBookLife.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Diaries");
+                    b.ToTable("Diaries", (string)null);
                 });
 
             modelBuilder.Entity("MyBookLife.Web.Models.Book", b =>
@@ -345,7 +343,7 @@ namespace MyBookLife.Infrastructure.Migrations
 
                     b.HasIndex("EntryId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MyBookLife.Application.ViewModels
+namespace MyBookLife.Application.ViewModels.DiaryVm
 {
     public class DiaryForListVm : IMapFrom<Diary>
     {

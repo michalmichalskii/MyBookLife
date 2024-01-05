@@ -25,7 +25,9 @@ namespace MyBookLife.Infrastructure.Repositories
 
         public int AddDiary(Diary diary)
         {
-            throw new NotImplementedException();
+            _context.Diaries.Add(diary);
+            _context.SaveChanges();
+            return diary.Id;
         }
 
         public void DeleteDiary(int diaryId)

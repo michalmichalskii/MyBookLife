@@ -1,4 +1,5 @@
-﻿@model IEnumerable<MyBookLife.Application.ViewModels.DiaryForListVm>
+﻿@using MyBookLife.Application.ViewModels.DiaryVm
+@model IEnumerable<DiaryForListVm>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,14 +8,11 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="AddDiary">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -27,18 +25,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.TotalBooksRead)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner)
-            </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
@@ -50,9 +42,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TotalBooksRead)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
