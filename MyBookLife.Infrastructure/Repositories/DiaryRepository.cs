@@ -1,4 +1,5 @@
 ﻿using MyBookLife.Domain.Interfaces;
+using MyBookLife.Domain.Models.NotesBased;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,37 @@ namespace MyBookLife.Infrastructure.Repositories
 {
     public class DiaryRepository : IDiaryRepository
     {
+        private Context _context;
+
+        public DiaryRepository(Context context)
+        {
+            _context = context;
+        }
+
+        IQueryable<Diary> IDiaryRepository.GetAllDiaries()
+        {
+            var diaries = _context.Diaries;
+            return diaries;
+        }
+
+        public int AddDiary(Diary diary)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteDiary(int diaryId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Diary GetDiary(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateDiary(int diaryId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

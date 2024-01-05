@@ -20,6 +20,7 @@ namespace MyBookLife.Application
             services.AddTransient<IDiaryService, DiaryService>();
             services.AddTransient<IEntryService, EntryService>();
             services.AddTransient<IGenreService, GenreService>();
+
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             return services;

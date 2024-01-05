@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MyBookLife.Application;
 using MyBookLife.Infrastructure;
 
 namespace MyBookLife.Web
@@ -19,6 +20,9 @@ namespace MyBookLife.Web
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<Context>();
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddApplication();
+            builder.Services.AddInfrastructure();
 
             var app = builder.Build();
 

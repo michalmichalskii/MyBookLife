@@ -1,9 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿ using Microsoft.Extensions.DependencyInjection;
 using MyBookLife.Domain.Interfaces;
 using MyBookLife.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,6 +18,7 @@ namespace MyBookLife.Infrastructure
             services.AddTransient<IDiaryRepository, DiaryRepository>();
             services.AddTransient<IEntryRepository, EntryRepository>();
             services.AddTransient<IGenreRepository, GenreRepository>();
+
             return services;
         }
     }

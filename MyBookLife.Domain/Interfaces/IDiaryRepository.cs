@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyBookLife.Domain.Models.NotesBased;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,11 @@ namespace MyBookLife.Domain.Interfaces
 {
     public interface IDiaryRepository
     {
+        IQueryable<Diary> GetAllDiaries();
+        Diary GetDiary(int id);
+        int AddDiary(Diary diary);
+        void DeleteDiary(int diaryId);
+        void UpdateDiary(int diaryId);
+
     }
 }
