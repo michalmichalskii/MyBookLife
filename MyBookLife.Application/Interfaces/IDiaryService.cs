@@ -15,5 +15,7 @@ namespace MyBookLife.Application.Interfaces
         void RemoveDiaryById(int diaryId);
         NewDiaryVm GetDiaryForEdit(int diaryId);
         void UpdateDiary(NewDiaryVm diaryVm);
+        void UpdateTotalPages(DiaryForListVm diary);
+        void UpdateTotalBooks(DiaryForListVm diary);
     }
 }

@@ -1,14 +1,13 @@
-﻿@using MyBookLife.Application.ViewModels.DiaryVm
-@model IEnumerable<DiaryForListVm>
+﻿@model IEnumerable<MyBookLife.Application.ViewModels.EntryVm.EntryForListVm>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "DiaryEntries";
 }
 
-<h1>Index</h1>
+<h1>DiaryEntries</h1>
 
 <p>
-    <a asp-action="AddDiary">Create New</a>
+    <a asp-action="AddEntry" asp-route-DiaryId="@ViewBag.DiaryId">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -24,6 +23,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.TotalBooksRead)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiaryId)
             </th>
             <th></th>
         </tr>
@@ -45,9 +47,12 @@
                     @Html.DisplayFor(modelItem => item.TotalBooksRead)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "EditDiary", new { diaryId = item.Id }) |
-                    @Html.ActionLink("Entries", "DiaryEntries", new { diaryId = item.Id }) |
-                    @Html.ActionLink("Delete", "RemoveDiaryById", new { diaryId = item.Id })
+                    @Html.DisplayFor(modelItem => item.DiaryId)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditEntry", new { entryId = item.Id }) |
+                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                    @Html.ActionLink("Delete", "RemoveEntryById", new { entryId = item.Id })
                 </td>
             </tr>
         }

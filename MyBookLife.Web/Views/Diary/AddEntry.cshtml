@@ -1,0 +1,52 @@
+﻿@model MyBookLife.Application.ViewModels.EntryVm.NewEntryVm
+
+@{
+    ViewData["Title"] = "AddEntry";
+}
+
+<h1>AddEntry</h1>
+
+<h4>NewEntryVm</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddEntry">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input type="hidden" asp-for="Id" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="CreateDateTime" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalPagesRead" class="control-label"></label>
+                <input asp-for="TotalPagesRead" class="form-control" />
+                <span asp-validation-for="TotalPagesRead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalBooksRead" class="control-label"></label>
+                <input asp-for="TotalBooksRead" class="form-control" />
+                <span asp-validation-for="TotalBooksRead" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="hidden" asp-for="DiaryId" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

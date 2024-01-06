@@ -16,11 +16,13 @@ namespace MyBookLife.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IDiaryRepository _diaryRepository;
+        private readonly IEntryRepository _entryRepository;
 
-        public DiaryService(IMapper mapper, IDiaryRepository diaryRepository)
+        public DiaryService(IMapper mapper, IDiaryRepository diaryRepository, IEntryRepository entryRepository)
         {
             _mapper = mapper;
             _diaryRepository = diaryRepository;
+            _entryRepository = entryRepository;
         }
 
         public int AddDiary(NewDiaryVm newDiaryVm)
@@ -42,11 +44,12 @@ namespace MyBookLife.Application.Services
 
         public List<DiaryForListVm> GetUserDiariesList(string userId)
         {
-            var diaries = _diaryRepository.GetAllDiaries()
+            var diariesVm = _diaryRepository.GetAllDiaries()
                                           .Where(p => p.Owner == userId)
                                           .ProjectTo<DiaryForListVm>(_mapper.ConfigurationProvider)
                                           .ToList();
-            return diaries;
+
+            return diariesVm;
         }
 
         public void RemoveDiaryById(int diaryId)
@@ -58,6 +61,28 @@ namespace MyBookLife.Application.Services
         {
             var diary = _mapper.Map<Diary>(diaryVm);
             _diaryRepository.UpdateDiary(diary);
+        }
+
+        public void UpdateTotalBooks(DiaryForListVm diaryForListVm)
+        {
+            var totalBooks = 0;
+            var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.DiaryId == diaryForListVm.Id).ToList();
+            foreach (var entry in allDiaryEntries)
+            {
+                totalBooks += entry.TotalBooksRead;
+            }
+            diaryForListVm.TotalPagesRead = totalBooks;
+        }
+
+        public void UpdateTotalPages(DiaryForListVm diaryForListVm)
+        {
+            var totalPages = 0;
+            var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.DiaryId == diaryForListVm.Id).ToList();
+            foreach (var entry in allDiaryEntries)
+            {
+                totalPages += entry.TotalPagesRead;
+            }
+            diaryForListVm.TotalPagesRead = totalPages;
         }
     }
 }
