@@ -65,13 +65,13 @@ namespace MyBookLife.Application.Services
 
         public void UpdateTotalBooks(DiaryForListVm diaryForListVm)
         {
-            var totalBooks = 0;
-            var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.DiaryId == diaryForListVm.Id).ToList();
-            foreach (var entry in allDiaryEntries)
-            {
-                totalBooks += entry.TotalBooksRead;
-            }
-            diaryForListVm.TotalPagesRead = totalBooks;
+            //var totalBooks = 0;
+            //var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.DiaryId == diaryForListVm.Id).ToList();
+            //foreach (var entry in allDiaryEntries)
+            //{
+            //    totalBooks += entry.TotalBooksRead;
+            //}
+            //diaryForListVm.TotalPagesRead = totalBooks;
         }
 
         public void UpdateTotalPages(DiaryForListVm diaryForListVm)
@@ -80,7 +80,7 @@ namespace MyBookLife.Application.Services
             var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.DiaryId == diaryForListVm.Id).ToList();
             foreach (var entry in allDiaryEntries)
             {
-                totalPages += entry.TotalPagesRead;
+                totalPages += entry.PagesRead;
             }
             diaryForListVm.TotalPagesRead = totalPages;
         }

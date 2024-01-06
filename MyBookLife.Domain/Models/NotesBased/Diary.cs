@@ -13,6 +13,8 @@ namespace MyBookLife.Domain.Models.NotesBased
     {
         public string Name { get; set; }
         public string Owner { get; set; }
+        public int TotalPagesRead { get; set; }
+        public int TotalBooksRead { get; set; }
         public virtual IEnumerable<Entry>? Entries { get; set; }
     }
 }

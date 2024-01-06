@@ -12,6 +12,7 @@ namespace MyBookLife.Domain.Models.NoteBased
     {
         public int DiaryId { get; set; }
         public int BookId { get; set; }
+        public int PagesRead { get; set; }
         public virtual Book Book { get; set; }
     }
 }

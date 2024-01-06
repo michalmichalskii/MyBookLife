@@ -13,19 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.BookId)
+                @Html.DisplayNameFor(model => model.Book)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CreateDateTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalPagesRead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalBooksRead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DiaryId)
+                @Html.DisplayNameFor(model => model.PagesRead)
             </th>
             <th></th>
         </tr>
@@ -35,23 +29,16 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BookId)
+                    @Html.DisplayFor(modelItem => item.Book)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreateDateTime)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalPagesRead)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalBooksRead)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DiaryId)
+                    @Html.DisplayFor(modelItem => item.PagesRead)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "EditEntry", new { entryId = item.Id }) |
-                    @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                     @Html.ActionLink("Delete", "RemoveEntryById", new { entryId = item.Id })
                 </td>
             </tr>

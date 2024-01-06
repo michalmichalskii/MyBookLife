@@ -14,8 +14,7 @@ namespace MyBookLife.Application.ViewModels.EntryVm
     {
         public int Id { get; set; }
         public DateTime CreateDateTime { get; set; }
-        public int TotalPagesRead { get; set; }
-        public int TotalBooksRead { get; set; }
+        public int PagesRead { get; set; }
         public int DiaryId { get; set; }
         public int BookId { get; set; }
 

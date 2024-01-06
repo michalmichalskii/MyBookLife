@@ -10,7 +10,6 @@ namespace MyBookLife.Domain.Models.Notes
     {
         public int Id { get; set; }
         public DateTime CreateDateTime { get; set; }
-        public int TotalPagesRead { get; set; }
-        public int TotalBooksRead { get; set; }
+
     }
 }

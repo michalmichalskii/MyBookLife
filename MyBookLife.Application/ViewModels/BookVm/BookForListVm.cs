@@ -19,9 +19,11 @@ namespace MyBookLife.Application.ViewModels.BookVm
         public int TotalPages { get; set; }
         public int? ReadPages { get; set; }
         public string Owner { get; set; }
+        public string Genre { get; set; }
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Book, BookForListVm>();
+            profile.CreateMap<Book, BookForListVm>()
+                .ForMember(s => s.Genre, opt => opt.MapFrom(d => d.Genre.GenreName));
         }
     }
 }

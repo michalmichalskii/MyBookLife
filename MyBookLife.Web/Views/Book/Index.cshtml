@@ -21,10 +21,13 @@
                 @Html.DisplayNameFor(model => model.Author)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalPages)
+                @Html.DisplayNameFor(model => model.Genre)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ReadPages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPages)
             </th>
             <th></th>
         </tr>
@@ -40,11 +43,15 @@
                     @Html.DisplayFor(modelItem => item.Author)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.TotalPages)
+                    @Html.DisplayFor(modelItem => item.Genre)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.ReadPages)
                 </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPages)
+                </td>
+
                 <td>
                     @Html.ActionLink("Edit", "EditBook", new { bookId = item.Id }) |
                     @Html.ActionLink("Delete", "RemoveBookById", new { bookId = item.Id })
