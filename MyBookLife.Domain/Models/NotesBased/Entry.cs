@@ -10,7 +10,8 @@ namespace MyBookLife.Domain.Models.NoteBased
 {
     public class Entry : Note
     {
-        public virtual int DiaryId { get; set; }
-        public virtual IEnumerable<Book> Books { get; set; }
+        public int DiaryId { get; set; }
+        public int BookId { get; set; }
+        public virtual Book Book { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyBookLife.Infrastructure;
 
@@ -11,9 +12,10 @@ using MyBookLife.Infrastructure;
 namespace MyBookLife.Infrastructure.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20240106131908_OneToOneEntryWithBookRelation")]
+    partial class OneToOneEntryWithBookRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,10 +253,6 @@ namespace MyBookLife.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Owner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Genres");
@@ -267,9 +265,6 @@ namespace MyBookLife.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("BookId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("CreateDateTime")
                         .HasColumnType("datetime2");
@@ -284,8 +279,6 @@ namespace MyBookLife.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BookId");
 
                     b.HasIndex("DiaryId");
 
@@ -333,9 +326,8 @@ namespace MyBookLife.Infrastructure.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Owner")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("EntryId")
+                        .HasColumnType("int");
 
                     b.Property<int?>("ReadPages")
                         .HasColumnType("int");
@@ -348,6 +340,9 @@ namespace MyBookLife.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("EntryId")
+                        .IsUnique();
 
                     b.ToTable("Books");
                 });
@@ -424,24 +419,31 @@ namespace MyBookLife.Infrastructure.Migrations
 
             modelBuilder.Entity("MyBookLife.Domain.Models.NoteBased.Entry", b =>
                 {
-                    b.HasOne("MyBookLife.Web.Models.Book", "Book")
-                        .WithMany("Entries")
-                        .HasForeignKey("BookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MyBookLife.Domain.Models.NotesBased.Diary", null)
                         .WithMany("Entries")
                         .HasForeignKey("DiaryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
 
-                    b.Navigation("Book");
+            modelBuilder.Entity("MyBookLife.Web.Models.Book", b =>
+                {
+                    b.HasOne("MyBookLife.Domain.Models.NoteBased.Entry", null)
+                        .WithOne("Book")
+                        .HasForeignKey("MyBookLife.Web.Models.Book", "EntryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyBookLife.Domain.Models.Genre", b =>
                 {
                     b.Navigation("BookGenres");
+                });
+
+            modelBuilder.Entity("MyBookLife.Domain.Models.NoteBased.Entry", b =>
+                {
+                    b.Navigation("Book")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("MyBookLife.Domain.Models.NotesBased.Diary", b =>
@@ -452,8 +454,6 @@ namespace MyBookLife.Infrastructure.Migrations
             modelBuilder.Entity("MyBookLife.Web.Models.Book", b =>
                 {
                     b.Navigation("BookGenres");
-
-                    b.Navigation("Entries");
                 });
 #pragma warning restore 612, 618
         }

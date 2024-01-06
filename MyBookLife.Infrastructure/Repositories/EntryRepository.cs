@@ -51,7 +51,11 @@ namespace MyBookLife.Infrastructure.Repositories
         public void UpdateEntry(Entry entry)
         {
             _context.Attach(entry);
-            _context.Entry(entry).Property("Name").IsModified = true;
+
+            //TODO - title, not name
+
+            /*_context.Entry(entry).Property("Name").IsModified = true;*/
+
             _context.Entry(entry).Property("TotalPagesRead").IsModified = true;
             _context.Entry(entry).Property("TotalBooksRead").IsModified = true;
             _context.SaveChanges();

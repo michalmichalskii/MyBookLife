@@ -1,4 +1,5 @@
 ﻿using MyBookLife.Domain.Models;
+using MyBookLife.Domain.Models.NoteBased;
 
 namespace MyBookLife.Web.Models
 {
@@ -9,7 +10,8 @@ namespace MyBookLife.Web.Models
         public string? Author { get; set; }
         public int TotalPages { get; set; }
         public int? ReadPages { get; set; }
-        public virtual int EntryId { get; set; }
-        public virtual IEnumerable<BookGenre>? BookGenres { get; set; }
+        public string Owner { get; set; }
+        public virtual IEnumerable<Entry> Entries { get; set; }
+        public virtual IEnumerable<BookGenre> BookGenres { get; set; }
     }
 }

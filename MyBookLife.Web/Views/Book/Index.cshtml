@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MyBookLife.Application.ViewModels.BookVm.BookForListVm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Books</h1>
+
+<p>
+    <a asp-action="AddBook">Add Book</a>
+    <br />
+    <a asp-action="GetListOfGenres">View of genres</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPages)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ReadPages)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalPages)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ReadPages)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "EditBook", new { bookId = item.Id }) |
+                    @Html.ActionLink("Delete", "RemoveBookById", new { bookId = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

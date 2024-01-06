@@ -4,6 +4,7 @@
     {
         public int Id { get; set; }
         public string GenreName { get; set; }
+        public string Owner { get; set; }
         public virtual IEnumerable<BookGenre>? BookGenres { get; set; }
     }
 }

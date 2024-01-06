@@ -14,15 +14,11 @@ namespace MyBookLife.Web.Controllers
     {
         private readonly IDiaryService _diaryService;
         private readonly IEntryService _entryService;
-        private readonly IBookService _bookService;
-        private readonly IGenreService _genreService;
 
         public DiaryController(IDiaryService diaryService, IEntryService entryService, IBookService bookService, IGenreService genreService)
         {
             _diaryService = diaryService;
             _entryService = entryService;
-            _bookService = bookService;
-            _genreService = genreService;
         }
 
         #region diary
@@ -36,7 +32,7 @@ namespace MyBookLife.Web.Controllers
                 _diaryService.UpdateTotalPages(diary);
                 _diaryService.UpdateTotalBooks(diary);
             }
-            
+
             return View(diaries);
         }
 
@@ -48,13 +44,9 @@ namespace MyBookLife.Web.Controllers
         [HttpPost]
         public IActionResult AddDiary(NewDiaryVm newDiaryVm)
         {
-            if (ModelState.IsValid)
-            {
-                newDiaryVm.Owner = User.Identity.Name;
-                var id = _diaryService.AddDiary(newDiaryVm);
-                return RedirectToAction("Index");
-            }
-            return View(newDiaryVm);
+            newDiaryVm.Owner = User.Identity.Name;
+            var id = _diaryService.AddDiary(newDiaryVm);
+            return RedirectToAction("Index");
         }
 
         [HttpGet]

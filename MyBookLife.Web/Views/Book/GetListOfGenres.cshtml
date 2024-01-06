@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MyBookLife.Application.ViewModels.GenreVm.GenreForListVm>
+
+@{
+    ViewData["Title"] = "GetListOfGenres";
+}
+
+<h1>GetListOfGenres</h1>
+
+<p>
+    <a asp-action="AddGenre">Add Genre</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GenreName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.GenreName)
+            </td>
+            <td>
+                    @Html.ActionLink("Delete", "RemoveGenreById", new { genreId = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

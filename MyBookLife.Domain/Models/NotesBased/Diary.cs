@@ -11,6 +11,7 @@ namespace MyBookLife.Domain.Models.NotesBased
 {
     public class Diary : Note
     {
+        public string Name { get; set; }
         public string Owner { get; set; }
         public virtual IEnumerable<Entry>? Entries { get; set; }
     }
