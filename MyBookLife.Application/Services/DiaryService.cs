@@ -33,6 +33,13 @@ namespace MyBookLife.Application.Services
             return id;
         }
 
+        public NewDiaryVm GetDiaryForEdit(int diaryId)
+        {
+            var diary = _diaryRepository.GetDiary(diaryId);
+            var diaryVm = _mapper.Map<NewDiaryVm>(diary);
+            return diaryVm;
+        }
+
         public List<DiaryForListVm> GetUserDiariesList(string userId)
         {
             var diaries = _diaryRepository.GetAllDiaries()
@@ -45,6 +52,12 @@ namespace MyBookLife.Application.Services
         public void RemoveDiaryById(int diaryId)
         {
             _diaryRepository.RemoveDiaryById(diaryId);
+        }
+
+        public void UpdateDiary(NewDiaryVm diaryVm)
+        {
+            var diary = _mapper.Map<Diary>(diaryVm);
+            _diaryRepository.UpdateDiary(diary);
         }
     }
 }

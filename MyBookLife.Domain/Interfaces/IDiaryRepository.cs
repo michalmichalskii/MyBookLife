@@ -13,7 +13,6 @@ namespace MyBookLife.Domain.Interfaces
         Diary GetDiary(int id);
         int AddDiary(Diary diary);
         void RemoveDiaryById(int diaryId);
-        void UpdateDiary(int diaryId);
-
+        void UpdateDiary(Diary diary);
     }
 }

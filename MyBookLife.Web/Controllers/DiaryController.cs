@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBookLife.Application.Interfaces;
 using MyBookLife.Application.ViewModels.DiaryVm;
+using MyBookLife.Domain.Models.NotesBased;
 
 namespace MyBookLife.Web.Controllers
 {
@@ -29,18 +30,38 @@ namespace MyBookLife.Web.Controllers
             return View(diaries);
         }
 
-
         [HttpGet]
         public IActionResult AddDiary()
         {
-            return View();
+            return View(new NewDiaryVm());
         }
         [HttpPost]
         public IActionResult AddDiary(NewDiaryVm newDiaryVm)
         {
-            newDiaryVm.Owner = User.Identity.Name;
-            var id = _diaryService.AddDiary(newDiaryVm);
-            return RedirectToAction("Index");
+            if (ModelState.IsValid)
+            {
+                newDiaryVm.Owner = User.Identity.Name;
+                var id = _diaryService.AddDiary(newDiaryVm);
+                return RedirectToAction("Index");
+            }
+            return View(newDiaryVm);
+        }
+
+        [HttpGet]
+        public IActionResult EditDiary(int diaryId)
+        {
+            var diary = _diaryService.GetDiaryForEdit(diaryId);
+            return View(diary);
+        }
+        [HttpPost]
+        public IActionResult EditDiary(NewDiaryVm diaryVm)
+        {
+            if (ModelState.IsValid)
+            {
+                _diaryService.UpdateDiary(diaryVm);
+                return RedirectToAction("Index");
+            }
+            return View(diaryVm);
         }
 
         [HttpGet]

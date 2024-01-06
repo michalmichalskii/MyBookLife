@@ -13,5 +13,7 @@ namespace MyBookLife.Application.Interfaces
         List<DiaryForListVm> GetUserDiariesList(string userId);
         int AddDiary(NewDiaryVm newDiaryVm);
         void RemoveDiaryById(int diaryId);
+        NewDiaryVm GetDiaryForEdit(int diaryId);
+        void UpdateDiary(NewDiaryVm diaryVm);
     }
 }

@@ -10,7 +10,7 @@ namespace MyBookLife.Infrastructure.Repositories
 {
     public class DiaryRepository : IDiaryRepository
     {
-        private Context _context;
+        private readonly Context _context;
 
         public DiaryRepository(Context context)
         {
@@ -42,12 +42,15 @@ namespace MyBookLife.Infrastructure.Repositories
 
         public Diary GetDiary(int id)
         {
-            throw new NotImplementedException();
+            var diary = _context.Diaries.FirstOrDefault(p => p.Id == id);
+            return diary;
         }
 
-        public void UpdateDiary(int diaryId)
+        public void UpdateDiary(Diary diary)
         {
-            throw new NotImplementedException();
+            _context.Attach(diary);
+            _context.Entry(diary).Property("Name").IsModified = true;
+            _context.SaveChanges();
         }
     }
 }
