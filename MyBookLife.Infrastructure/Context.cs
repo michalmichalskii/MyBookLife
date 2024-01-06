@@ -25,17 +25,6 @@ namespace MyBookLife.Infrastructure
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<BookGenre>()
-                .HasKey(bg => new {bg.BookId, bg.GenreId});
-            builder.Entity<BookGenre>()
-                .HasOne(bg => bg.Book)
-                .WithMany(bg => bg.BookGenres)
-                .HasForeignKey(bg => bg.BookId);
-            builder.Entity<BookGenre>()
-                .HasOne(bg => bg.Genre)
-                .WithMany(bg => bg.BookGenres)
-                .HasForeignKey(bg => bg.GenreId);
         }
     }
 }

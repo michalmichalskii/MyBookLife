@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyBookLife.Application.Interfaces;
+using MyBookLife.Application.Services;
 using MyBookLife.Application.ViewModels.DiaryVm;
 using MyBookLife.Application.ViewModels.EntryVm;
 using MyBookLife.Domain.Models.NoteBased;
@@ -14,11 +15,13 @@ namespace MyBookLife.Web.Controllers
     {
         private readonly IDiaryService _diaryService;
         private readonly IEntryService _entryService;
+        private readonly IBookService _bookService;
 
-        public DiaryController(IDiaryService diaryService, IEntryService entryService, IBookService bookService, IGenreService genreService)
+        public DiaryController(IDiaryService diaryService, IEntryService entryService, IBookService bookService)
         {
             _diaryService = diaryService;
             _entryService = entryService;
+            _bookService = bookService;
         }
 
         #region diary
@@ -86,6 +89,8 @@ namespace MyBookLife.Web.Controllers
         [HttpGet]
         public IActionResult AddEntry(int diaryId)
         {
+            var books = _bookService.GetUserBooksList(User.Identity.Name);
+            ViewBag.Books = books;
             return View(new NewEntryVm()
             {
                 DiaryId = diaryId

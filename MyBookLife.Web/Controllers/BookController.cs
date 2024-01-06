@@ -31,6 +31,8 @@ namespace MyBookLife.Web.Controllers
         [HttpGet]
         public IActionResult AddBook()
         {
+            var genres = _genreService.GetUserGenresList(User.Identity.Name);
+            ViewBag.Genres = genres;
             return View(new NewBookVm());
         }
         [HttpPost]
