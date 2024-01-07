@@ -13,6 +13,6 @@ namespace MyBookLife.Domain.Interfaces
         IQueryable<Book> GetAllBooks();
         Book GetBook(int bookId);
         void RemoveBookById(int bookId);
-        void UpdateDiary(Book book);
+        void UpdateBook(Book book);
     }
 }

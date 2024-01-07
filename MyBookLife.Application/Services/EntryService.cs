@@ -19,11 +19,13 @@ namespace MyBookLife.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IEntryRepository _entryRepository;
+        private readonly IBookRepository _bookRepository;
 
         public EntryService(IMapper mapper, IEntryRepository entryRepository, IBookRepository bookRepository)
         {
             _mapper = mapper;
             _entryRepository = entryRepository;
+            _bookRepository = bookRepository;
         }
 
         public void UpdateBooksReadPages(BookForListVm bookForListVm)
@@ -41,7 +43,6 @@ namespace MyBookLife.Application.Services
         {
             newEntryVm.CreateDateTime = DateTime.Now;
             var entry = _mapper.Map<Entry>(newEntryVm);
-
             var id = _entryRepository.AddEntry(entry);
 
             return id;
@@ -72,6 +73,15 @@ namespace MyBookLife.Application.Services
         {
             var entry = _mapper.Map<Entry>(entryVm);
             _entryRepository.UpdateEntry(entry);
+        }
+
+        public List<EntryForListVm> GetAllUserEntries(string name)
+        {
+            var entriesVm = _entryRepository.GetAllEntries()
+                                            .Where(p => p.Owner == name)
+                                            .ProjectTo<EntryForListVm>(_mapper.ConfigurationProvider)
+                                            .ToList();
+            return entriesVm;
         }
     }
 }

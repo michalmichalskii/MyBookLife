@@ -30,12 +30,6 @@ namespace MyBookLife.Web.Controllers
         {
             var diaries = _diaryService.GetUserDiariesList(User.Identity.Name);
 
-            foreach (var diary in diaries)
-            {
-                _diaryService.UpdateTotalPages(diary);
-                _diaryService.UpdateTotalBooks(diary);
-            }
-
             return View(diaries);
         }
 
@@ -84,7 +78,6 @@ namespace MyBookLife.Web.Controllers
             var entriesInDiary = _entryService.GetEntriesByDiaryId(diaryId);
             ViewBag.DiaryId = diaryId;
 
-
             return View(entriesInDiary);
         }
 
@@ -104,7 +97,11 @@ namespace MyBookLife.Web.Controllers
         public IActionResult AddEntry(NewEntryVm newEntryVm)
         {
             newEntryVm.Owner = User.Identity.Name;
+
             var id = _entryService.AddEntry(newEntryVm);
+            int booksRead = _bookService.AddReadPages(newEntryVm.BookId, newEntryVm.PagesRead);
+            int totalDiaryReadPages = _diaryService.AddTotalReadPages(newEntryVm.DiaryId, newEntryVm.PagesRead);
+            int totalBooksRead = _diaryService.AddTotalReadBooks(newEntryVm.DiaryId, booksRead);
 
             return RedirectToAction("DiaryEntries", new { diaryId = newEntryVm.DiaryId });
         }
@@ -119,12 +116,8 @@ namespace MyBookLife.Web.Controllers
         [HttpPost]
         public IActionResult EditEntry(NewEntryVm entryVm)
         {
-            if (ModelState.IsValid)
-            {
-                _entryService.UpdateEntry(entryVm);
-                return RedirectToAction("DiaryEntries", new { diaryId = entryVm.DiaryId });
-            }
-            return View(entryVm);
+            _entryService.UpdateEntry(entryVm);
+            return RedirectToAction("DiaryEntries", new { diaryId = entryVm.DiaryId });
         }
 
         [HttpGet]
@@ -132,6 +125,11 @@ namespace MyBookLife.Web.Controllers
         {
             var tmpEntry = _entryService.GetEntryForEdit(entryId);
             _entryService.RemoveEntryById(entryId);
+
+            int minusBook = _bookService.SubstractReadPages(tmpEntry.BookId, tmpEntry.PagesRead);
+            int totalDiaryReadPages = _diaryService.SubstractTotalReadPages(tmpEntry.DiaryId, tmpEntry.PagesRead);
+            int totalBooksRead = _diaryService.SubstractTotalReadBooks(tmpEntry.DiaryId, minusBook);
+
             return RedirectToAction("DiaryEntries", new { diaryId = tmpEntry.DiaryId });
         }
         #endregion

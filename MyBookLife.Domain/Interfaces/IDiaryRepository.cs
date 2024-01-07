@@ -14,5 +14,6 @@ namespace MyBookLife.Domain.Interfaces
         int AddDiary(Diary diary);
         void RemoveDiaryById(int diaryId);
         void UpdateDiary(Diary diary);
+        int UpdatePagesRead(Diary diary, int totalPages);
     }
 }

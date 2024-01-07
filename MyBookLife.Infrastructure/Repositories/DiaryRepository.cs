@@ -1,5 +1,7 @@
 ﻿using MyBookLife.Domain.Interfaces;
 using MyBookLife.Domain.Models.NotesBased;
+using MyBookLife.Infrastructure.Migrations;
+using MyBookLife.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,7 +52,17 @@ namespace MyBookLife.Infrastructure.Repositories
         {
             _context.Attach(diary);
             _context.Entry(diary).Property("Name").IsModified = true;
+            _context.Entry(diary).Property("TotalPagesRead").IsModified = true;
+            _context.Entry(diary).Property("TotalBooksRead").IsModified = true;
             _context.SaveChanges();
+        }
+
+        public int UpdatePagesRead(Diary diary, int totalPages)
+        {
+            _context.Attach(diary);
+            diary.TotalPagesRead = totalPages;
+            _context.SaveChanges();
+            return totalPages;
         }
     }
 }

@@ -16,5 +16,6 @@ namespace MyBookLife.Application.Interfaces
         void RemoveEntryById(int entryId);
         void UpdateEntry(NewEntryVm entryVm);
         void UpdateBooksReadPages(BookForListVm bookForListVm);
+        List<EntryForListVm> GetAllUserEntries(string name);
     }
 }

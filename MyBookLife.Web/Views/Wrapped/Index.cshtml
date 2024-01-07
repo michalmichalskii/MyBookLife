@@ -1,0 +1,85 @@
+﻿@model IEnumerable<MyBookLife.Application.ViewModels.StatVm.SatsForListVm>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">My book life wrapped</h1>
+        </div>
+    </div>
+</header>
+<hr />
+<div class="container">
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.StartedBooks)
+                        <div class="text-white-50 small">Started books</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.TotalBooksRead)
+                        <div class="text-white-50 small">Total books read</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.TotalPagesRead)
+                        <div class="text-white-50 small">Total pages read</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.TotalEntries)
+                        <div class="text-white-50 small">Total entries</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.FavouriveGenre)
+                        <div class="text-white-50 small">Favourite genre</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.AverageLengthOfReadBooks)
+                        <div class="text-white-50 small">Average length of read books</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.LongestReadBookTitle)
+                        <div class="text-white-50 small">Longest read book</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mb-4">
+                <div class="card bg-secondary text-white shadow mx-auto">
+                    <div class="card-body">
+                        @Html.DisplayFor(modelItem => item.ShortestReadBookTitle)
+                        <div class="text-white-50 small">Shortest read book</div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

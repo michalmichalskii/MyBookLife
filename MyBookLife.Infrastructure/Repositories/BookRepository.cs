@@ -46,13 +46,24 @@ namespace MyBookLife.Infrastructure.Repositories
             }
         }
 
-        public void UpdateDiary(Book book)
+        public void UpdateBook(Book book)
         {
             _context.Attach(book);
             _context.Entry(book).Property("Title").IsModified = true;
             _context.Entry(book).Property("Author").IsModified = true;
             _context.Entry(book).Property("TotalPages").IsModified = true;
+            _context.Entry(book).Property("Read").IsModified = true;
+            _context.Entry(book).Property("ReadPages").IsModified = true;
             _context.SaveChanges();
+        }
+
+        public int UpdatePagesRead(int bookId, int pagesRead)
+        {
+            var book = _context.Books.FirstOrDefault(p => p.Id == bookId);
+            _context.Attach(book);
+            book.ReadPages = pagesRead;
+            _context.SaveChanges();
+            return pagesRead;
         }
     }
 }

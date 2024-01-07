@@ -21,7 +21,7 @@ namespace MyBookLife.Application.ViewModels.DiaryVm
 
         public void Mapping(Profile profile)
         {
-            profile.CreateMap<Diary, DiaryForListVm>();
+            profile.CreateMap<Diary, DiaryForListVm>().ReverseMap();
         }
     }
 }

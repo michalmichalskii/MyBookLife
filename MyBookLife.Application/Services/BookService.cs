@@ -57,7 +57,39 @@ namespace MyBookLife.Application.Services
         public void UpdateBook(NewBookVm bookVm)
         {
             var book = _mapper.Map<Book>(bookVm);
-            _bookRepository.UpdateDiary(book);
+            _bookRepository.UpdateBook(book);
+        }
+
+        public int AddReadPages(int bookId, int pagesRead)
+        {
+            var bookVm = _bookRepository.GetBook(bookId);
+            bookVm.ReadPages += pagesRead;
+            if(bookVm.ReadPages >= bookVm.TotalPages)
+            {
+                bookVm.Read = true;
+                var readBook = _mapper.Map<Book>(bookVm);
+                _bookRepository.UpdateBook(readBook);
+                return 1;
+            }
+            var book = _mapper.Map<Book>(bookVm) ;
+            _bookRepository.UpdateBook(book);
+            return 0;
+        }
+
+        public int SubstractReadPages(int bookId, int pagesRead)
+        {
+            var bookVm = _bookRepository.GetBook(bookId);
+            bookVm.ReadPages -= pagesRead;
+            if (bookVm.ReadPages < bookVm.TotalPages)
+            {
+                bookVm.Read = false;
+                var readBook = _mapper.Map<Book>(bookVm);
+                _bookRepository.UpdateBook(readBook);
+                return 1;
+            }
+            var book = _mapper.Map<Book>(bookVm);
+            _bookRepository.UpdateBook(book);
+            return 0;
         }
     }
 }
