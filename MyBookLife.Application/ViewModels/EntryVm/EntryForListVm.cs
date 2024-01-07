@@ -21,6 +21,8 @@ namespace MyBookLife.Application.ViewModels.EntryVm
         public int TotalBooksRead { get; set; }
         public int DiaryId { get; set; }
         public string Book { get; set; }
+        public string Owner { get; set; }
+
 
 
         public void Mapping(Profile profile)

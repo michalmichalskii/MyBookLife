@@ -1,4 +1,5 @@
-﻿using MyBookLife.Application.ViewModels.EntryVm;
+﻿using MyBookLife.Application.ViewModels.BookVm;
+using MyBookLife.Application.ViewModels.EntryVm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace MyBookLife.Application.Interfaces
         NewEntryVm GetEntryForEdit(int entryId);
         void RemoveEntryById(int entryId);
         void UpdateEntry(NewEntryVm entryVm);
+        void UpdateBooksReadPages(BookForListVm bookForListVm);
     }
 }

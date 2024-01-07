@@ -4,44 +4,44 @@
     ViewData["Title"] = "DiaryEntries";
 }
 
-<h1>DiaryEntries</h1>
-
-<p>
-    <a asp-action="AddEntry" asp-route-DiaryId="@ViewBag.DiaryId">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Book)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PagesRead)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<header class="bg-dark py-0.5">
+    <div class="container px-4 px-lg-5 my-3">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Entries</h1>
+            <a asp-action="AddEntry" asp-route-DiaryId="@ViewBag.DiaryId">Create New</a>
+        </div>
+    </div>
+</header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Book)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PagesRead)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "EditEntry", new { entryId = item.Id }) |
-                    @Html.ActionLink("Delete", "RemoveEntryById", new { entryId = item.Id })
-                </td>
-            </tr>
+            <div class="col-md-4 mb-5">
+                <section class="py-4">
+                    <div class="card h-100">
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.Book)</h5>
+                                <!-- Product price-->
+                                Created:
+                                <br />
+                                @Html.DisplayFor(modelItem => item.CreateDateTime)
+                                <br />
+                                <b>Pages Read: </b>@Html.DisplayFor(modelItem => item.PagesRead)
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("EditEntry", new { entryId = item.Id })">Edit</a>
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("RemoveEntryById", new { entryId = item.Id })">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>

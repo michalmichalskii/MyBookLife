@@ -13,10 +13,12 @@ namespace MyBookLife.Web.Controllers
     {
         private readonly IBookService _bookService;
         private readonly IGenreService _genreService;
-        public BookController(IBookService bookService, IGenreService genreService)
+        private readonly IEntryService _entryService;
+        public BookController(IBookService bookService, IGenreService genreService, IEntryService entryService)
         {
             _bookService = bookService;
             _genreService = genreService;
+            _entryService = entryService;
         }
 
         #region book
@@ -24,7 +26,10 @@ namespace MyBookLife.Web.Controllers
         public IActionResult Index()
         {
             var books = _bookService.GetUserBooksList(User.Identity.Name);
-
+            foreach (var book in books)
+            {
+                _entryService.UpdateBooksReadPages(book);
+            }
             return View(books);
         }
 

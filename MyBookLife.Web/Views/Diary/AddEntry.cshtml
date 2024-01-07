@@ -4,9 +4,13 @@
     ViewData["Title"] = "AddEntry";
 }
 
-<h1>AddEntry</h1>
-
-<h4>NewEntryVm</h4>
+<header class="bg-dark py-0.5">
+    <div class="container px-4 px-lg-5 my-3">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">New entry</h1>
+        </div>
+    </div>
+</header>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,6 +41,7 @@
                 </select>
                 <span asp-validation-for="BookId" class="text-danger"></span>
             </div>
+            No books here? <a asp-controller="Book" asp-action="AddBook">Click here</a> to add some
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
@@ -45,7 +50,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="DiaryEntries" asp-route-DiaryId="@Model.DiaryId">Back to Entries</a>
 </div>
 
 @section Scripts {

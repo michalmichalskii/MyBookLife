@@ -83,13 +83,16 @@ namespace MyBookLife.Web.Controllers
         {
             var entriesInDiary = _entryService.GetEntriesByDiaryId(diaryId);
             ViewBag.DiaryId = diaryId;
+
+
             return View(entriesInDiary);
         }
 
         [HttpGet]
         public IActionResult AddEntry(int diaryId)
         {
-            var books = _bookService.GetUserBooksList(User.Identity.Name);
+            var books = _bookService.GetUserBooksList(User.Identity.Name).Where(p => p.Read == false);
+
             ViewBag.Books = books;
             return View(new NewEntryVm()
             {
@@ -100,12 +103,10 @@ namespace MyBookLife.Web.Controllers
         [HttpPost]
         public IActionResult AddEntry(NewEntryVm newEntryVm)
         {
-            if (ModelState.IsValid)
-            {
-                var id = _entryService.AddEntry(newEntryVm);
-                return RedirectToAction("DiaryEntries", new { diaryId = newEntryVm.DiaryId });
-            }
-            return View(newEntryVm);
+            newEntryVm.Owner = User.Identity.Name;
+            var id = _entryService.AddEntry(newEntryVm);
+
+            return RedirectToAction("DiaryEntries", new { diaryId = newEntryVm.DiaryId });
         }
 
         [HttpGet]

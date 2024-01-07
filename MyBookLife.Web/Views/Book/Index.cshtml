@@ -4,59 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>My Books</h1>
-
-<p>
-    <a asp-action="AddBook">Add Book</a>
-    <br />
-    <a asp-action="GetListOfGenres">View of genres</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Author)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Genre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ReadPages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPages)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">My Books</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Collection</p>
+            <a asp-action="AddBook">Add Book</a>
+            <br />
+            <a asp-action="GetListOfGenres">View of genres</a>
+        </div>
+    </div>
+</header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Author)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Genre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ReadPages)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPages)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Edit", "EditBook", new { bookId = item.Id }) |
-                    @Html.ActionLink("Delete", "RemoveBookById", new { bookId = item.Id })
-                </td>
-            </tr>
+            <div class="col-md-4 mb-5">
+                <section class="py-4">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="book.jpg" alt="...">
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </h5>
+                                <!-- Product price-->
+                                <br />
+                                Author: @Html.DisplayFor(modelItem => item.Author)
+                                <br />
+                                Genre: @Html.DisplayFor(modelItem => item.Genre)
+                                <br />
+                                <br />
+                                <b>Read Pages/<br />Totoal Pages: </b><br />@Html.DisplayFor(modelItem => item.ReadPages)/@Html.DisplayFor(modelItem => item.TotalPages)
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("EditBook", new { bookId = item.Id })">Edit</a>
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("RemoveBookById", new { bookId = item.Id })">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
+

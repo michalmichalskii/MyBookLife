@@ -20,6 +20,7 @@ namespace MyBookLife.Application.ViewModels.BookVm
         public int? ReadPages { get; set; }
         public string Owner { get; set; }
         public int GenreId { get; set; }
+        public bool Read { get; set; }
 
         public void Mapping(Profile profile)
         {

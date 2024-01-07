@@ -4,11 +4,15 @@
     ViewData["Title"] = "GetListOfGenres";
 }
 
-<h1>GetListOfGenres</h1>
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Genres</h1>
+            <a asp-action="AddGenre">Add Genre</a>
+        </div>
+    </div>
+</header>
 
-<p>
-    <a asp-action="AddGenre">Add Genre</a>
-</p>
 <table class="table">
     <thead>
         <tr>
@@ -31,3 +35,5 @@
 }
     </tbody>
 </table>
+<a asp-action="Index">Back to List</a>
+

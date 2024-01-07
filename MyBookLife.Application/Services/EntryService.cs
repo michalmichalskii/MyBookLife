@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using MyBookLife.Application.Interfaces;
+using MyBookLife.Application.ViewModels.BookVm;
 using MyBookLife.Application.ViewModels.DiaryVm;
 using MyBookLife.Application.ViewModels.EntryVm;
 using MyBookLife.Domain.Interfaces;
@@ -18,23 +19,28 @@ namespace MyBookLife.Application.Services
     {
         private readonly IMapper _mapper;
         private readonly IEntryRepository _entryRepository;
-        private readonly IDiaryRepository _diaryRepository;
 
-        public EntryService(IMapper mapper, IEntryRepository entryRepository, IDiaryRepository diaryRepository)
+        public EntryService(IMapper mapper, IEntryRepository entryRepository, IBookRepository bookRepository)
         {
             _mapper = mapper;
             _entryRepository = entryRepository;
-            _diaryRepository = diaryRepository;
+        }
+
+        public void UpdateBooksReadPages(BookForListVm bookForListVm)
+        {
+            var totalPages = 0;
+            var allDiaryEntries = _entryRepository.GetAllEntries().Where(p => p.BookId == bookForListVm.Id).ToList();
+            foreach (var entry in allDiaryEntries)
+            {
+                totalPages += entry.PagesRead;
+            }
+            bookForListVm.ReadPages = totalPages;
         }
 
         public int AddEntry(NewEntryVm newEntryVm)
         {
             newEntryVm.CreateDateTime = DateTime.Now;
             var entry = _mapper.Map<Entry>(newEntryVm);
-
-            //var diary = _diaryRepository.GetDiary(entry.DiaryId);
-            //diary.TotalPagesRead += entry.TotalPagesRead;
-            //diary.TotalBooksRead += entry.TotalBooksRead;
 
             var id = _entryRepository.AddEntry(entry);
 

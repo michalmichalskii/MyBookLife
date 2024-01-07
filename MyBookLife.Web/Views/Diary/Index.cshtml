@@ -4,52 +4,51 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="AddDiary">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CreateDateTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalPagesRead)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.TotalBooksRead)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
+<header class="bg-dark py-1">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Diaries</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Save your book journey here</p>
+            <a asp-action="AddDiary">Create New</a>
+        </div>
+    </div>
+</header>
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CreateDateTime)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalPagesRead)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TotalBooksRead)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "EditDiary", new { diaryId = item.Id }) |
-                    @Html.ActionLink("Entries", "DiaryEntries", new { diaryId = item.Id }) |
-                    @Html.ActionLink("Delete", "RemoveDiaryById", new { diaryId = item.Id })
-                </td>
-            </tr>
+            <div class="col-md-4 mb-5">
+                <section class="py-4">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        <img class="card-img-top" src="1.jpg" alt="...">
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">@Html.DisplayFor(modelItem => item.Name)</h5>
+                                <!-- Product price-->
+                                Created:
+                                <br />
+                                @Html.DisplayFor(modelItem => item.CreateDateTime)
+                                <br />
+                                <br />
+                                <b>TotalPagesRead: </b>@Html.DisplayFor(modelItem => item.TotalPagesRead)
+                                <br />
+                                <b>TotalBooksRead: </b>@Html.DisplayFor(modelItem => item.TotalBooksRead)
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="text-center">
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("DiaryEntries", new { diaryId = item.Id })">Entries</a>
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("EditDiary", new { diaryId = item.Id })">Edit</a>
+                                <a class="btn btn-outline-dark mt-auto d-block" href="@Url.Action("RemoveDiaryById", new { diaryId = item.Id })">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
         }
-    </tbody>
-</table>
+    </div>
+</div>
