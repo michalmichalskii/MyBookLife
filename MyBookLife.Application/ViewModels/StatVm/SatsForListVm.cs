@@ -11,7 +11,9 @@ namespace MyBookLife.Application.ViewModels.StatVm
         //TODO nie mozna edytowac dlugosci ksiazki
         public int TotalPagesRead { get; set; } 
         public string LongestReadBookTitle { get; set; } 
+        public int LongestReadBookPages { get; set; } 
         public string ShortestReadBookTitle { get; set; } 
+        public int ShortestReadBookPages { get; set; } 
         public string FavouriveGenre { get; set; } 
         public int TotalBooksRead { get; set; } 
         public int StartedBooks { get; set; } 

@@ -42,12 +42,14 @@ namespace MyBookLife.Web.Controllers
             var sortedGroups = groupedReadBooksByLength.OrderByDescending(group => group.Key);
             var longestBookGroup = sortedGroups.FirstOrDefault();
             string longestBookTitle = "Brak danych";
+            int longestBookPages = 0;
             if (longestBookGroup != null)
             {
                 var longestBook = longestBookGroup.FirstOrDefault();
                 if (longestBook != null)
                 {
                     longestBookTitle = longestBook.Title;
+                    longestBookPages = longestBook.TotalPages;
                 }
             }
 
@@ -55,12 +57,14 @@ namespace MyBookLife.Web.Controllers
             var sortedGroups2 = groupedReadBooksByLength.OrderBy(group => group.Key);
             var shortestBookGroup = sortedGroups2.FirstOrDefault();
             string shortestBookTitle = "Brak danych";
+            int shortestBookPages = 0;
             if (shortestBookGroup != null)
             {
                 var shortestBook = shortestBookGroup.FirstOrDefault();
                 if (shortestBook != null)
                 {
                     shortestBookTitle = shortestBook.Title;
+                    shortestBookPages = shortestBook.TotalPages;
                 }
             }
 
@@ -80,8 +84,13 @@ namespace MyBookLife.Web.Controllers
 
                 FavouriveGenre = favoriteGenre,
                 TotalPagesRead = totalPages,
+
                 LongestReadBookTitle = longestBookTitle,
+                LongestReadBookPages = longestBookPages,
+
                 ShortestReadBookTitle = shortestBookTitle,
+                ShortestReadBookPages = shortestBookPages,
+
                 TotalBooksRead = totalBooksReadCount,
 
                 //Total number of entries

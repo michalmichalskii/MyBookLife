@@ -67,7 +67,7 @@
             <div class="col-12 col-md-6 mb-4">
                 <div class="card bg-secondary text-white shadow mx-auto">
                     <div class="card-body">
-                        @Html.DisplayFor(modelItem => item.LongestReadBookTitle)
+                        @Html.DisplayFor(modelItem => item.LongestReadBookTitle), @Html.DisplayFor(modelItem => item.LongestReadBookPages)
                         <div class="text-white-50 small">Longest read book</div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
             <div class="col-12 col-md-6 mb-4">
                 <div class="card bg-secondary text-white shadow mx-auto">
                     <div class="card-body">
-                        @Html.DisplayFor(modelItem => item.ShortestReadBookTitle)
+                        @Html.DisplayFor(modelItem => item.ShortestReadBookTitle), @Html.DisplayFor(modelItem => item.ShortestReadBookPages)
                         <div class="text-white-50 small">Shortest read book</div>
                     </div>
                 </div>
