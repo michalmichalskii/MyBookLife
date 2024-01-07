@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookLife.Web", "MyBookLife.Web\MyBookLife.Web.csproj", "{09FFB617-1DB4-4019-B36A-FC809771D339}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBookLife.Web", "MyBookLife.Web\MyBookLife.Web.csproj", "{09FFB617-1DB4-4019-B36A-FC809771D339}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{C6993CB4-A598-4BD7-93E6-57A67FEB9C4D}"
 EndProject
@@ -11,15 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{BEDA486A-1607-459D-878D-96C1C481EB11}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookLife.Application", "MyBookLife.Application\MyBookLife.Application.csproj", "{2322A097-5BF8-4C17-B1DA-ADED6F8ECC46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBookLife.Application", "MyBookLife.Application\MyBookLife.Application.csproj", "{2322A097-5BF8-4C17-B1DA-ADED6F8ECC46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookLife.Domain", "MyBookLife.Domain\MyBookLife.Domain.csproj", "{F56C1B17-8E4A-45E7-94C7-D7B352E0ED8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBookLife.Domain", "MyBookLife.Domain\MyBookLife.Domain.csproj", "{F56C1B17-8E4A-45E7-94C7-D7B352E0ED8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookLife.Infrastructure", "MyBookLife.Infrastructure\MyBookLife.Infrastructure.csproj", "{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{24429E7D-61E3-40F1-B451-8B5ABD7D378A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyBookLife.Tests", "MyBookLife.Tests\MyBookLife.Tests.csproj", "{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyBookLife.Infrastructure", "MyBookLife.Infrastructure\MyBookLife.Infrastructure.csproj", "{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,10 +39,6 @@ Global
 		{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,7 +47,6 @@ Global
 		{2322A097-5BF8-4C17-B1DA-ADED6F8ECC46} = {9B2A1323-ADFA-4375-A542-D3196ABEB1C6}
 		{F56C1B17-8E4A-45E7-94C7-D7B352E0ED8D} = {C6993CB4-A598-4BD7-93E6-57A67FEB9C4D}
 		{7AEC1A0D-3275-4ABC-87B1-52230F52E3FC} = {BEDA486A-1607-459D-878D-96C1C481EB11}
-		{1FF911A0-297F-4AD0-9FFF-7F78AA4C3F1C} = {24429E7D-61E3-40F1-B451-8B5ABD7D378A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0F0D3E24-43A9-4040-8358-BDA492BBE1AA}
