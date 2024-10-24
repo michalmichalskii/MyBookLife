@@ -31,3 +31,5 @@ serwerze bazy danych.
 • Naciśnij przycisk "Start" lub skorzystaj z klawisza F5, aby uruchomić aplikację.
 • Otwórz przeglądarkę internetową i przejdź do adresu https://localhost:PORT, gdzie 
 PORT to numer portu, na którym została uruchomiona aplikacja
+
+Projekt został wykonany przez: Michał Michalski, Bartosz Sikorski, Marek Marcinkowski
