@@ -32,4 +32,4 @@ serwerze bazy danych.
 • Otwórz przeglądarkę internetową i przejdź do adresu https://localhost:PORT, gdzie 
 PORT to numer portu, na którym została uruchomiona aplikacja
 
-Projekt został wykonany przez: Michał Michalski, Bartosz Sikorski, Marek Marcinkowski
+Projekt został wykonany przez: Michał Michalski (130615), Bartosz Sikorski (131593), Marek Marcinkowski (130604)
