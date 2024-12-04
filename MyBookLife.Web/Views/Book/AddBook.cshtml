@@ -45,6 +45,7 @@
                 </select>
                 <span asp-validation-for="GenreId" class="text-danger"></span>
             </div>
+            No genre here? <a asp-controller="Book" asp-action="AddGenre">Click here</a> to add some
             <div class="form-group">
                 <input type="hidden" asp-for="ReadPages" class="form-control" />
             </div>
