@@ -71,7 +71,11 @@ Logowanie przez Google:
 16. W Visual Studio otówrz terminal, przejdź do folderu "MyBookLife.Web" i wpisz "dotnet user-secrets set "Authentication:Google:ClientSecret" "twój skopiowany tajny klucz"", naciśnij enter
 
 17. Odkomentuj poniższy fragment kodu z pliku "Program.cs":
-<pre><code class="language-csharp"> //builder.Services.AddAuthentication().AddGoogle(googleOptions => //{ // googleOptions.ClientId = configuration["Authentication:Google:ClientId"]; // googleSecret = configuration["Authentication:Google:ClientSecret"]; //}); </code></pre>
+<pre><code class="language-csharp">//builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+//{
+//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+//    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+//});</code></pre>
 
 Uruchamianie Projektu:
 1. Wybierz projekt MyBookLife.Web jako główny projekt w Visual Studio.
