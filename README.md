@@ -40,6 +40,85 @@ Dostosowanie połączenia z bazą danych do Swojego Komputera:
 
 8. Wykonaj migrację danych
 
+Dostosowywanie triggera:
+1. W bazie danych (SQL Server Managment Studio) utwórz tabelę za pomocą nowego query z kodem:
+<pre><code>USE [BookLifeDb]
+GO
+
+/****** Object:  Table [dbo].[ReadingHistory]    Script Date: 19/12/2024 10:23:32 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[ReadingHistory](
+    [Id] [int] IDENTITY(1,1) NOT NULL,
+    [EntryId] [int] NOT NULL,
+    [DiaryId] [int] NOT NULL,
+    [BookId] [int] NOT NULL,
+    [PagesRead] [int] NOT NULL,
+    [CreateDateTime] [datetime2](7) NOT NULL,
+    [Action] [varchar](10) NOT NULL,
+    [UserId] [nvarchar](450) NULL,
+PRIMARY KEY CLUSTERED 
+(
+    [Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+</code></pre>
+
+2. W nowym query utwórz trigger za pomocą poniższego kodu:
+<pre><code>USE [BookLifeDb]
+GO
+
+/****** Object:  Trigger [dbo].[UpdateReadingHistory]    Script Date: 19/12/2024 10:24:15 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TRIGGER [dbo].[UpdateReadingHistory]
+ON [dbo].[Entries]
+AFTER INSERT, UPDATE
+AS
+BEGIN
+	--wyłącza wysyłanie komunikatów o liczbie zmodyfikowanych wierszy
+    SET NOCOUNT ON; 
+
+    INSERT INTO ReadingHistory (EntryId, DiaryId, BookId, UserId, PagesRead, CreateDateTime, Action)
+	--Te linie wybierają dane do wstawienia. i odnosi się do tabeli inserted, która zawiera nowe lub zaktualizowane wiersze.
+    SELECT 
+        i.Id,
+        i.DiaryId,
+        i.BookId,
+        u.Id,
+        i.PagesRead,
+        i.CreateDateTime,
+		--CASE określa, czy operacja to INSERT (gdy d.Id jest NULL) czy UPDATE.
+        CASE
+            WHEN d.Id IS NULL THEN 'INSERT'
+            ELSE 'UPDATE'
+        END
+	--Te linie łączą tabelę inserted z tabelą deleted. Dla operacji INSERT, deleted będzie pusta.
+    FROM 
+        inserted i
+    LEFT JOIN 
+        deleted d ON i.Id = d.Id
+	--To złączenie pobiera Id użytkownika z tabeli AspNetUsers, łącząc pole Owner z Entries z UserName z AspNetUsers.
+    INNER JOIN
+        [dbo].[AspNetUsers] u ON i.Owner = u.UserName;
+END;
+GO
+
+ALTER TABLE [dbo].[Entries] ENABLE TRIGGER [UpdateReadingHistory]
+GO
+
+
+</code></pre>
+
 Logowanie przez Google:
 1. Wejdź na stronę https://console.cloud.google.com/projectcreate i utwórz nowy projekt o dowolnej nazwie
 
