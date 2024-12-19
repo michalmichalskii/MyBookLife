@@ -13,6 +13,9 @@ Pobieranie ASP.NET w wersji 6.0:
 
 3. Postępuj zgodnie z instrukcjami instalacyjnymi dostępnymi na stronie, aby zainstalować ASP.NET w wersji 6.0.
 
+XAMPP:
+1.	Pobierz aplikację XAMPP na swój komputer i włącz moduł Apache
+
 Włączanie Projektu za pomocą Visual Studio 2022:
 1. Otwórz Visual Studio 2022 na swoim komputerze.
 
