@@ -64,11 +64,11 @@ Logowanie przez Google:
 
 13. Skopiuj "Identyfikator klienta"
 
-14. W Visual Studio otówrz terminal, przejdź do folderu "MyBookLife.Web" i wpisz "dotnet user-secrets set "Authentication:Google:ClientId" "twój skopiowany klucz", naciśnij enter
+14. W Visual Studio otówrz terminal, przejdź do folderu "MyBookLife.Web" i wpisz "dotnet user-secrets set "Authentication:Google:ClientId" "twój skopiowany klucz"", naciśnij enter
 
 15. z przeglądarki skopiuj "Tajny klucz klienta"
 
-16. W Visual Studio otówrz terminal, przejdź do folderu "MyBookLife.Web" i wpisz "dotnet user-secrets set "Authentication:Google:ClientSecret" "twój skopiowany tajny klucz", naciśnij enter
+16. W Visual Studio otówrz terminal, przejdź do folderu "MyBookLife.Web" i wpisz "dotnet user-secrets set "Authentication:Google:ClientSecret" "twój skopiowany tajny klucz"", naciśnij enter
 
 17. Odkomentuj poniższy fragment kodu z pliku "Program.cs":
 //builder.Services.AddAuthentication().AddGoogle(googleOptions =>
